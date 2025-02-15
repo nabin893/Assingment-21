@@ -16,7 +16,7 @@ const Jcards = () => {
                     <div className="card bg-base-100 image-full w-[400px] shadow-xl">
                         <figure>
                             <img
-                                src="/public/photos/imag/Untitled design (2).png"
+                                src="https://i.ibb.co.com/yFzrtvgd/Untitled-design-2.png"
                                 alt="Shoes" />
                         </figure>
                         <div className="card-body">
@@ -30,7 +30,7 @@ const Jcards = () => {
                     <div className="card bg-base-100 image-full w-[400px] shadow-xl">
                         <figure>
                             <img
-                                src="/public/photos/imag/Untitled design (3).png"
+                                src="https://i.ibb.co.com/JFxZkfwz/Untitled-design-3.png"
                                 alt="Shoes" />
                         </figure>
                         <div className="card-body">
@@ -44,7 +44,7 @@ const Jcards = () => {
                     <div className="card bg-base-100 image-full w-[400px] shadow-xl">
                         <figure>
                             <img
-                                src="/public/photos/imag/Untitled design (4).png"
+                                src="https://i.ibb.co.com/cSY191M6/Untitled-design-10.png"
                                 alt="Shoes" />
                         </figure>
                         <div className="card-body">
@@ -58,7 +58,24 @@ const Jcards = () => {
                     <div className="card bg-base-100 image-full w-[400px] shadow-xl">
                         <figure>
                             <img
-                                src="/public/photos/imag/Untitled design (5).png"
+                                src="
+https://i.ibb.co.com/N6BHbrhk/Untitled-design-4.png
+" />
+                        </figure>
+                        <div className="card-body">
+                            <h2 className="card-title">Shoes!</h2>
+                            <p>If a dog chews shoes whose shoes does he choose?</p>
+                            <div className="card-actions justify-end">
+                                <button className="btn btn-primary">Sec Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card bg-base-100 image-full w-[400px] shadow-xl">
+                        <figure>
+                            <img
+                                src="
+https://i.ibb.co.com/tw21D46q/Untitled-design-5.png
+"
                                 alt="Shoes" />
                         </figure>
                         <div className="card-body">
@@ -72,21 +89,8 @@ const Jcards = () => {
                     <div className="card bg-base-100 image-full w-[400px] shadow-xl">
                         <figure>
                             <img
-                                src="/public/photos/imag/Untitled design (7).png"
-                                alt="Shoes" />
-                        </figure>
-                        <div className="card-body">
-                            <h2 className="card-title">Shoes!</h2>
-                            <p>If a dog chews shoes whose shoes does he choose?</p>
-                            <div className="card-actions justify-end">
-                                <button className="btn btn-primary">Sec Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card bg-base-100 image-full w-[400px] shadow-xl">
-                        <figure>
-                            <img
-                                src="/public/photos/imag/Untitled design (10).png"
+                                src="
+https://i.ibb.co.com/gZvQ4Kb2/Untitled-design-7.png"
                                 alt="Shoes" />
                         </figure>
                         <div className="card-body">
