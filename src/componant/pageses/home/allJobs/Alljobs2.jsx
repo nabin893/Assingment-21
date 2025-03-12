@@ -1,25 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { setdata } from '../../../../localstros/Lostor';
 
 const Alljobs2 = ({ ajobs }) => {
-    const { _id } = ajobs
+//    const {alljobe,setalljobe}=useState([])
+
+   
+
+   const clickhandel =(id)=>{
+    //    setalljobe(id)
+    
+     setdata(id)
+   }
+
+    const { _id,image,jobSummary,category_name,job_title
+    } = ajobs
     return (
-        <div>
-            <div>
-                <div className="card card-side bg-base-100 shadow-xl">
-                    <figure>
-                        <img
-                            src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-                            alt="Movie" />
-                    </figure>
-                    <div className="card-body">
-                        <h2 className="card-title">New movie is released!</h2>
-                        <p>Click the button to watch on Jetflix app.</p>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Watch</button>
-                        </div>
-                    </div>
-                </div>
+        <div className='border-2 rounded-2xl bg-sky-200'>
+            <div className='flex'> 
+               <img className='w-[200px] h-[200px]' src={image} alt="" />
+               <div>
+                <h1 className='text-xl font-bold'>{job_title}</h1>
+               <h1 className='font-semibold'>{category_name}</h1>
+               <h1>{jobSummary.slice(0,100)}....</h1>
+               </div>
             </div>
+            <div className='flex justify-end m-5 '>
+                <button onClick={()=>clickhandel(_id)} className=' bg-blue-800 p-5 text-md text-white rounded-xl'><Link to={`/about/${_id}`}>see me</Link></button>
+               </div>
         </div>
     );
 };

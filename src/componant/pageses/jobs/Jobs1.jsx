@@ -19,7 +19,12 @@ const Jobs1 = () => {
             </div>
             <div className='grid  md:grid-cols-3 gap-5 my-10'>
                 {
-                  jobs?jobs.map(job1=> <Jobs2 key={job1.id} job1={job1}></Jobs2>):<h1>loding....</h1>
+                  jobs.length ?jobs.map(job1=> <Jobs2 key={job1.id} job1={job1}></Jobs2>):<h1><span className="loading loading-bars loading-xs"></span>
+                  <span className="loading loading-bars loading-sm"></span>
+                  <span className="loading loading-bars loading-md"></span>
+                  <span className="loading loading-bars loading-lg"></span>
+                  </h1>
+                
                 }
             </div>
         </div>
