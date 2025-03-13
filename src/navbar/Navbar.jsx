@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../context/UserContext';
 
 const Navbar = () => {
+
+    const {user} = useContext(AuthContext)
     return (
         <div>
             <div className='bg-sky-300 rounded-xl mt-5'>
@@ -37,7 +40,7 @@ const Navbar = () => {
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal px-1">
-                        <li><NavLink to='/'>HOME</NavLink></li>
+                        <li><NavLink to='/'>HOME  {user.email}</NavLink></li>
                                 <li><NavLink to='/jobs1'>APPLIE JOB</NavLink></li>
                                 <li><NavLink to='/blog1'>BLOGS</NavLink></li>
 
