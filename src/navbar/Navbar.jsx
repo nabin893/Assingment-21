@@ -4,7 +4,7 @@ import { AuthContext } from '../context/UserContext';
 
 const Navbar = () => {
 
-    const {user} = useContext(AuthContext)
+    const { user,logout } = useContext(AuthContext)
     return (
         <div>
             <div className='bg-sky-300 rounded-xl mt-5'>
@@ -35,23 +35,50 @@ const Navbar = () => {
                             </ul>
                         </div >
                         <div className='ml-5 p-2'>
-                        <img className='w-36' src="https://i.ibb.co.com/FLgDn31r/logo1.png" alt="" />
+                            <img className='w-36' src="https://i.ibb.co.com/FLgDn31r/logo1.png" alt="" />
                         </div>
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal px-1">
-                        <li><NavLink to='/'>HOME  {user.email}</NavLink></li>
-                                <li><NavLink to='/jobs1'>APPLIE JOB</NavLink></li>
-                                <li><NavLink to='/blog1'>BLOGS</NavLink></li>
+                            <li><NavLink to='/'>HOME </NavLink></li>
+                            <li><NavLink to='/jobs1'>APPLIE JOB</NavLink></li>
+                            <li><NavLink to='/blog1'>BLOGS</NavLink></li>
 
                         </ul>
                     </div>
                     <div className="navbar-end mr-5">
+                        {user?.uid ?                        
+                        <div className="dropdown dropdown-end">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img
+                                        alt="Tailwind CSS Navbar component"
+                                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                </div>
+                            </div>
+                            <ul
+                                tabIndex={0}
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                                <li>
+                                    <a className="justify-between text-lg">
+                                        Profile
+                                        <span className="badge text-lg"> {user?.uid.slice(-10)}</span>
+                                    </a>
+                                </li>
+                                <li><a className=" text-lg"> {user.email}</a></li>
+                                <li><a className=" text-lg" onClick={logout}>Logout</a></li>
+                            </ul>
+
+
+                        </div>:
                         <button className=' bg-slate-700 p-2 rounded-xl text-white'><Link to="/sineIn">SING IN</Link></button>
+                        }
+                        
+
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 

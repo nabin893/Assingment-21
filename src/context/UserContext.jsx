@@ -1,6 +1,6 @@
 import React, { createContext  } from 'react';
 import app from '../Firebase/Firebase.config';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useState } from 'react';
 
 
@@ -24,18 +24,32 @@ const UserContext = ({children}) => {
     return signInWithEmailAndPassword(auth, email, password)
  }
 
+//  logout
+const logout =()=>{
+   signOut(auth)
+   .then(() => {
+     
+    }).catch((error) => {
+     console.log(error);
+     
+    });
+    
+}
+
+
  const currentUser1 = onAuthStateChanged(auth, currentUser => {
     console.log("observing user", currentUser);
     
     setUser(currentUser)
 
- })
+ },()=>currentUser1())
 
 
  const authInfo ={
     creatUser1,
     loginUser,
     user,
+    logout,
  }
 
     return (

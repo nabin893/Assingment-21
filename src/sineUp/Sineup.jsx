@@ -77,7 +77,7 @@ const Sineup = () => {
 
                             </div>
 
-                            <button className="btn btn-neutral mt-4">SignUp</button>
+                            <button className="btn btn-neutral mt-4" type="submit" valu="register">SignUp</button>
                             <div className='flex justify-between'>
                                 <button className="btn btn-neutral mt-4">Continue with Google <FaGooglePlus className='text-2xl' /></button>
                                 <button className="btn btn-neutral mt-4">Connect with GitHub <FaGithub className='text-2xl' /></button>
