@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import {  signInWithEmailAndPassword, } from "firebase/auth";
-
+import { FaGooglePlus } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { AuthContext } from '../../context/UserContext';
 
 
@@ -12,7 +12,7 @@ import { AuthContext } from '../../context/UserContext';
 
 const SineIN = () => {
 
-     const {loginUser} = useContext(AuthContext)
+     const {loginUser,creatGoolAc,creatGithubAc} = useContext(AuthContext)
        console.log(loginUser);
 
     // const[regUser,setregUser]= useState({})
@@ -40,6 +40,11 @@ const SineIN = () => {
               
             });
         } 
+
+        const signUpGoogle=()=>{
+            creatGoolAc()
+            
+        }
     return (
         <div> 
            
@@ -58,7 +63,13 @@ const SineIN = () => {
                             <a className="link link-hover text-xl"><Link to="/sineUp"> Create a account?</Link></a>
                         </div>
 
-                        <button className="btn btn-neutral mt-4">LogIn</button>
+                        <button className="btn btn-neutral mt-4" type="submit" valu="register">LogIn</button>
+
+                       <div className='flex justify-between'>
+                                <button className="btn btn-neutral mt-4" onClick={()=> signUpGoogle()}>Continue with Google <FaGooglePlus className='text-2xl' /></button>
+                                
+                                <button className="btn btn-neutral mt-4" onClick={creatGithubAc}>Connect with GitHub <FaGithub className='text-2xl' /></button>
+                            </div>
                     </div>
                 </div>
             </form>

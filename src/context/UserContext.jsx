@@ -1,11 +1,15 @@
 import React, { createContext  } from 'react';
 import app from '../Firebase/Firebase.config';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 // AUTH INIT
 const auth = getAuth(app);
+const googleprovider = new GoogleAuthProvider();
+const  githubProvider = new GithubAuthProvider();
 
 export const AuthContext = createContext()
 
@@ -28,15 +32,25 @@ const UserContext = ({children}) => {
 const logout =()=>{
    signOut(auth)
    .then(() => {
+      toast("user loge out successfuiiy don")
      
     }).catch((error) => {
      console.log(error);
      
-    });
-    
-}
+    });   }
 
+   //  sign IN with google
+   const creatGoolAc =()=>{
+    return  signInWithPopup(auth, googleprovider)
+  
+   }
+   //  sign IN with github
+   const creatGithubAc =()=>{
+    return  signInWithPopup(auth, githubProvider)
+  
+   }
 
+   // current User
  const currentUser1 = onAuthStateChanged(auth, currentUser => {
     console.log("observing user", currentUser);
     
@@ -45,11 +59,14 @@ const logout =()=>{
  },()=>currentUser1())
 
 
+//   context loder
  const authInfo ={
     creatUser1,
     loginUser,
     user,
     logout,
+    creatGoolAc,
+    creatGithubAc,
  }
 
     return (

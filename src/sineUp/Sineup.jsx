@@ -11,7 +11,7 @@ import { AuthContext } from '../context/UserContext';
 
 const Sineup = () => {
 
-   const {creatUser1} = useContext(AuthContext)
+   const {creatUser1,creatGoolAc,creatGithubAc} = useContext(AuthContext)
    console.log(creatUser1);
    
 
@@ -41,13 +41,21 @@ const Sineup = () => {
                 
             })
             .catch(error => {
-                console.log(error);
-                
-              
+                console.log(error);  
             });
-
-
     }
+    const signUpGoogle=()=>{
+        creatGoolAc()     
+    }
+    const signUpGithuble=()=>{
+        creatGithubAc()
+        
+          
+    }
+
+
+
+
     return (
         <div>
             <div>
@@ -78,9 +86,11 @@ const Sineup = () => {
                             </div>
 
                             <button className="btn btn-neutral mt-4" type="submit" valu="register">SignUp</button>
-                            <div className='flex justify-between'>
-                                <button className="btn btn-neutral mt-4">Continue with Google <FaGooglePlus className='text-2xl' /></button>
-                                <button className="btn btn-neutral mt-4">Connect with GitHub <FaGithub className='text-2xl' /></button>
+                            
+                             <div className='flex justify-between'>
+                                <button className="btn btn-neutral mt-4" onClick={()=> signUpGoogle()}>Continue with Google <FaGooglePlus className='text-2xl' /></button>
+                                
+                                <button className="btn btn-neutral mt-4" onClick={()=>signUpGithuble()}>Connect with GitHub <FaGithub className='text-2xl' /></button>
                             </div>
                         </div>
 
