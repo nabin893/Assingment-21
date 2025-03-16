@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGooglePlus } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
@@ -12,11 +12,15 @@ import { AuthContext } from '../../context/UserContext';
 
 const SineIN = () => {
 
-     const {loginUser,creatGoolAc,creatGithubAc} = useContext(AuthContext)
-       console.log(loginUser);
+     const {loginUser,creatGoolAc,creatGithubAc,forgPasword} = useContext(AuthContext)
+     
 
+//    USE State
     // const[regUser,setregUser]= useState({})
     // // console.log(regUser);
+    const [cEmail,setCEmail] = useState("")
+    // console.log(cEmail);
+    
     
 
     const handelLoUser = (e) => {
@@ -40,39 +44,61 @@ const SineIN = () => {
               
             });
         } 
+// Forgat passdord
+        const handleFoPassword=()=>{
+            // console.log(cEmail);
+            forgPasword(cEmail)
+            .then(() => {
+               alert('check your email')
+              })
+              .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+               
+              });
+     }
 
+ // CACH Email
+    const cachEmail=(e)=>{
+        const caEmail = event.target.value;
+        setCEmail(caEmail)
+    }
+
+// sign up with giigle
         const signUpGoogle=()=>{
-            creatGoolAc()
-            
+            creatGoolAc()        
         }
+
     return (
-        <div> 
-           
-            <form  onSubmit={handelLoUser } className='h-[100vh] flex justify-center items-center'>
-                <div className="card bg-sky-300 w-[600px] h-[400px] shrink-0 shadow-2xl">
+        <div className='h-[100vh] flex justify-center  items-center'> 
+           <div className="card bg-sky-300 w-[600px] h-[450px] shrink-0 shadow-2xl">
+            <form  onSubmit={handelLoUser } >
+                <div>
                     <div className="card-body">
 
                         <label className="fieldset-label">Email</label>
-                        <input name="email" type="email" className="input" placeholder="Email" />
+                        <input onBlur={cachEmail} name="email" type="email" className="input" placeholder="Email" />
 
                         <label className="fieldset-label">Password</label>
                         <input name="password" type="password" className="input" placeholder="Password" />
 
                         <div className='flex justify-between'>
-                            <a className="link link-hover text-xl">Forgot password?</a>
+                            <a onClick={handleFoPassword} className="link link-hover text-xl">Forgot password?</a>
                             <a className="link link-hover text-xl"><Link to="/sineUp"> Create a account?</Link></a>
                         </div>
 
                         <button className="btn btn-neutral mt-4" type="submit" valu="register">LogIn</button>
 
-                       <div className='flex justify-between'>
+                     
+                    </div>
+                </div>
+            </form>
+            <div className='flex justify-evenly'>
                                 <button className="btn btn-neutral mt-4" onClick={()=> signUpGoogle()}>Continue with Google <FaGooglePlus className='text-2xl' /></button>
                                 
                                 <button className="btn btn-neutral mt-4" onClick={creatGithubAc}>Connect with GitHub <FaGithub className='text-2xl' /></button>
                             </div>
-                    </div>
-                </div>
-            </form>
+        </div>
         </div>
     );
 };

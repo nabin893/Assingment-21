@@ -48,7 +48,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end mr-5">
-                        {user?.uid ?                        
+             {user?.uid && user?.emailVerified ?                        
                         <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
@@ -62,7 +62,7 @@ const Navbar = () => {
                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                                 <li>
                                     <a className="justify-between text-lg">
-                                        Profile
+                                        {user?.displayName}
                                         <span className="badge text-lg"> {user?.uid.slice(-10)}</span>
                                     </a>
                                 </li>

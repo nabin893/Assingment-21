@@ -11,11 +11,12 @@ import { AuthContext } from '../context/UserContext';
 
 const Sineup = () => {
 
-   const {creatUser1,creatGoolAc,creatGithubAc} = useContext(AuthContext)
+   const {creatUser1,creatGoolAc,creatGithubAc,updateUser,verifiUser} = useContext(AuthContext)
    console.log(creatUser1);
    
 
-//  state   
+//  state 
+const [pasWError,setPasWError]=useState("")  
     const[regUser,setregUser]= useState({})
     // console.log(regUser);
     
@@ -25,28 +26,60 @@ const Sineup = () => {
         const form = event.target;
         const firstName = form.firstName.value;
         const lastName = form.lastName.value;
+        const fullName = firstName + " " + lastName;
         const number = form.number.value;
         const email = form.email.value;
         const password = form.password.value;
+        console.log(number);     
         // console.log(FirstName, LastName, Number, Email, Password);
         
+ // password regex
+        if(!/(?=.*?[A-Z])/.test(password)){
+            setPasWError("password At least one upper case")
+            return
+        }
+        if(!/(?=.*?[a-z])/.test(password)){
+            setPasWError("password At least one  lower case")
+            return
+        }
+        if(!/(?=.*?[#?!@$%^&*-])/.test(password)){
+            setPasWError("password At least one special character")
+            return
+        }
+        if(password .length < 6 ){
+            setPasWError("password Minimum six in length .{6,}")
+            return
+        }
+
+        setPasWError("")
+
+// creat User
         creatUser1(email, password)
             .then(reg => {
                 const regUser = reg.user;
                 setregUser(regUser)
                 form.reset()
-                if(regUser.uid){
-                    alert("user created successfuiiy don")
-                }
+
+ // updateUser function calling
+                updateUser(fullName,number)
+                // if(regUser.uid){
+                //     alert("user created successfuiiy don")
+                // }
+                verifiUser()
+                .then(()=>{
+                    alert('check yuor email links')
+                })
                 
             })
             .catch(error => {
                 console.log(error);  
             });
     }
+// signUp Google
     const signUpGoogle=()=>{
         creatGoolAc()     
     }
+// signUp Githuble
     const signUpGithuble=()=>{
         creatGithubAc()
         
@@ -57,12 +90,12 @@ const Sineup = () => {
 
 
     return (
-        <div>
-            <div>
-                <h1>{regUser.email}</h1>
-                <h1>{regUser.uid}</h1>
-                <form onSubmit={handelCaUser} className='h-[100vh] flex justify-center  items-center'>
-                    <div className="card bg-sky-300 w-[600px] h-[700px] shrink-0 shadow-2xl">
+        <div className='h-[100vh] flex justify-center  items-center'>
+            <div className="card bg-sky-300 w-[600px] h-[700px] shrink-0 shadow-2xl">
+                {/* <h1>{regUser.email}</h1>
+                <h1>{regUser.uid}</h1> */}
+                <form onSubmit={handelCaUser} >
+                    <div >
                         <div className="card-body">
                             <label className="fieldset-label">First Name</label>
                             <input name="firstName" type="text" className="input" placeholder="Enter  First Name" />
@@ -78,6 +111,9 @@ const Sineup = () => {
 
                             <label className="fieldset-label">Password</label>
                             <input name="password" type="password" className="input" placeholder="Enter  Password" />
+                            {
+                               pasWError && <p className='text-red-500 text-xl -mt-3'>{pasWError}</p>
+                            }
 
 
                             <div >
@@ -87,15 +123,16 @@ const Sineup = () => {
 
                             <button className="btn btn-neutral mt-4" type="submit" valu="register">SignUp</button>
                             
-                             <div className='flex justify-between'>
-                                <button className="btn btn-neutral mt-4" onClick={()=> signUpGoogle()}>Continue with Google <FaGooglePlus className='text-2xl' /></button>
-                                
-                                <button className="btn btn-neutral mt-4" onClick={()=>signUpGithuble()}>Connect with GitHub <FaGithub className='text-2xl' /></button>
-                            </div>
+                           
                         </div>
 
                     </div>
                 </form>
+                <div className='flex justify-evenly'>
+                                <button className="btn btn-neutral mt-4" onClick={()=> signUpGoogle()}>Continue with Google <FaGooglePlus className='text-2xl' /></button>
+                                
+                                <button className="btn btn-neutral mt-4" onClick={()=>signUpGithuble()}>Connect with GitHub <FaGithub className='text-2xl' /></button>
+                            </div>
             </div>
         </div>
     );
