@@ -72,7 +72,7 @@ const Navbar = () => {
 
 
                         </div>:
-                        <button className=' bg-slate-700 p-2 rounded-xl text-white'><Link to="/sineIn">SING IN</Link></button>
+                        <button className=' bg-slate-700 p-2 rounded-xl text-white'><Link to="/sineIn">SIGN IN</Link></button>
                         }
                         
 

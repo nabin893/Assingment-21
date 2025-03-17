@@ -14,21 +14,28 @@ const githubProvider = new GithubAuthProvider();
 export const AuthContext = createContext()
 
 const UserContext = ({ children }) => {
+   
+    const [loading,setLoading] = useState(true)
 
    const [user, setUser] = useState({})
-   console.log(user);
+   // console.log(user);
 
 
-   // creat user
+// creat user
    const creatUser1 = (email, password) => {
+ // loading
+      setLoading(true)
       return createUserWithEmailAndPassword(auth, email, password)
    }
-   //  logIn 
+
+//  logIn 
    const loginUser = (email, password) => {
+ // loading
+      setLoading(true)
       return signInWithEmailAndPassword(auth, email, password)
    }
 
-   //  logout
+//  logout
    const logout = () => {
       signOut(auth)
          .then(() => {
@@ -71,9 +78,11 @@ const UserContext = ({ children }) => {
 
 
    
-   // current User
+// current User
    const currentUser1 = onAuthStateChanged(auth, currentUser => {
       console.log("observing user", currentUser);
+// loading
+      setLoading(false)
       setUser(currentUser)
       return () => {
          currentUser1 ()
@@ -92,6 +101,7 @@ const UserContext = ({ children }) => {
       updateUser,
       verifiUser,
       forgPasword,
+      loading,
    }
 
    return (

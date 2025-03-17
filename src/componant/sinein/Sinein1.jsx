@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGooglePlus } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from '../../context/UserContext';
@@ -13,6 +13,12 @@ import { AuthContext } from '../../context/UserContext';
 const SineIN = () => {
 
      const {loginUser,creatGoolAc,creatGithubAc,forgPasword} = useContext(AuthContext)
+
+//  location
+     const navigate = useNavigate();
+     const location = useLocation();
+     const form = location.state?.form?.pathname || '/'
+
      
 
 //    USE State
@@ -28,10 +34,14 @@ const SineIN = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+
         loginUser( email, password) 
             .then(reg => {
                 const logUser = reg.user;
                 form.reset()
+// Navigate
+                navigate(form,{replace:true})
+
                 if(logUser.uid){
                     alert("user logein successfuiiy don")
                 }

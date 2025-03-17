@@ -18,7 +18,7 @@ const Footer = () => {
                         <h1 className="link link-hover"><Link to='/'>Home</Link></h1>
                         <h1 className="link link-hover"><Link to='/jobs1'>Applie Job</Link></h1>
                         <h1 className="link link-hover"><Link to='/blog1'>Blogs</Link></h1>
-                        <a className="link link-hover">Press kit</a>
+                        <a className="link link-hover"><Link to="/sineIn">sign In</Link></a>
                     </nav>
                     <nav>
                         <h6 className="footer-title">Legal</h6>

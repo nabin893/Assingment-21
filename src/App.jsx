@@ -7,6 +7,7 @@ import Ajobs from "./componant/pageses/appliejob/Ajobs";
 import Alljobe3 from "./componant/pageses/home/allJobs/Alljobe3";
 import Sineup from "./sineUp/Sineup";
 import Sinein1 from "./componant/sinein/Sinein1";
+import PrivateRoutes from "./router/PrivateRoutes";
 
 
 
@@ -27,7 +28,7 @@ function App() {
         },
         {
           path: "/blog1",
-          element:<Blog1></Blog1> 
+          element:<PrivateRoutes><Blog1></Blog1></PrivateRoutes> 
         },
         {
           path: "/sineIn",

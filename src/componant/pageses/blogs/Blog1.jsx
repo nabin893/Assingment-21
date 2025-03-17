@@ -1,9 +1,12 @@
 import React from 'react';
 
 const Blog1 = () => {
+    console.log("nayeem");
     return (
-        <div>
-            blogs
+        <div className='text-3xl text-red-600 font-bold'>
+            this is blogs page
+            
+            
         </div>
     );
 };
