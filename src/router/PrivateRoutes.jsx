@@ -2,7 +2,7 @@ import React, {useContext } from 'react';
 import { AuthContext } from '../context/UserContext';
 import { Navigate, useLocation } from 'react-router-dom';
 
-const PrivateRoutes = ({Children}) => {
+const PrivateRoutes = ({children}) => {
    const {user,loading} = useContext(AuthContext)
    const location = useLocation()
 
@@ -11,7 +11,7 @@ const PrivateRoutes = ({Children}) => {
    }
    
    if(user && user?.uid){
-    return Children
+    return children
    }
    return <Navigate to={"/sineIn"} state={{form:location}} replace></Navigate>
 };
